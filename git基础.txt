@@ -1,0 +1,62 @@
+初学习网址 ：https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192
+git config --global user.name "Your Name"                  ----填写你的账号
+git config --global user.email "email@example.com"         ----填写你的邮箱
+mkdir 文件名    ---- 创建文件
+cd 路径         ---- 跳转
+pwd             ---- 当前路径
+git init        ---- 把当前目录变成git可以管理的仓库
+git add 文件名  ---- 把文件提交到暂缓存区  可以多次提交
+git commit -m“备注” ---- 把暂缓区文件提交到仓库  一次性提交所有文件
+git log         ---- 显示提交日志
+git log --pretty=online ---- 显示提交日志只显示版本号
+git reset --hard HEAD^ ---- 回退到上一个版本 HEAD^^回退两个版本，HEAD~100回退100个版本
+cat 文件名      ---- 查看文件内容
+git reset --hard id ---- 转到某个版本，id指的是版本号前5位就好，代表独一即可
+git reflog      ---- 记录每一次命令
+git status      ---- 查看当前状态
+git diff HEAD --文件名 ---- 查看工作区与仓库中最新版本的区别
+git checkout --文件名  ---- 丢弃工作区修改，如果暂缓区中有就换成暂缓区的，如果没有换成版本区的
+git reset HEAD 文件名  ---- 把暂缓区的修改撤销重新放回工作区
+rm 文件名       ---- 删除文件
+git rm 文件名
+git commit -m“备注” ---- 删除版本库中的文件
+远程连接 GitHub
+ssh-keygen -t rsa -C "邮箱"  ---- 去根目录找id_rsa.pub 添加到GitHub  ssh key
+git remote add origin git@github.com:账号/仓库名.git ---- 连接GitHub仓库
+git push -u origin master  ---- 把当前分支所有内容推送到远程库中  警告 yes即可
+git clone git@github.com:账号/仓库名.git ----克隆GitHub仓库到本地
+分支管理
+git checkout -b 分支名  ---- 创建并转到分支
+git switch -c 分支名    ---- 创建并转到分支
+git branch 分支名       ---- 创建分支
+git checkout 分支名     ---- 转到分支
+git switch 分支名       ---- 转到分支
+git branch              ---- 查看分支 *代表当前分支
+git merge 分支名        ---- 其他分支合并到当前分支
+git branch -d 分支名    ---- 删除分支
+当分支发生冲突无法合并时，cat查看分支冲突 手动修改使版本相同再合并
+git log --graph --pretty=oneline --abbrev-commit  ---- 查看当前分支合并情况
+git log --graph         ---- 查看分支合并图
+git merge --no-ff -m "merge with no-ff" 分支名  ---- 禁用Fast forward 采用普通分支合并
+git stash               ---- 当前工作区隐藏 用于该项没有完成 去处理其他分支bug
+git stash list          ---- 查看隐藏的工作
+git stash pop           ---- 恢复工作区同时删除stash内容
+git stash apply stash@{0} ---- 恢复指定隐藏工作
+git branch -D 分支名    ---- 强制删除未被合并的分支
+git remote              ---- 查看远程库信息
+git remote -v           ---- 查看远程库详细信息
+git push origin 分支名  ---- 推送分支所有内容到GitHub
+同时推送失败时，先git pull  抓取最新信息 合并后再推送。
+如果git pull 抓取也失败  git branch --set-upstream-to=origin/分支同名 分支同名 ---- 本地与远程库分支创建连接 再抓取
+git rebase              ---- 分支合并查看捋直
+标签
+git tag v1.0            ---- 给当前文件版本创建标签
+git tag                 ---- 查看所有标签
+git tag 标签 id         ---- 为给定id贴标签
+git show 标签           ---- 查看标签所有信息
+git tag -a v0.1 -m "version 0.1 released" id  ---- 给定id贴标签并备注
+git tag -d 标签         ---- 删除标签
+git push origin 标签    ---- 推送标签到远程
+git push origin --tags  ---- 推送所有标签
+删除远程标签 先git tag -d v0.9 删除本地标签 再git push origin :refs/tags/v0.9 删除远程标签
+
